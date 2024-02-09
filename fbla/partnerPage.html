@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Database</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="partnerPage.html">Partner Database</a></li>
+    </ul>
+  </nav>
+
+  <body>
+
+    <div class="container">
+
+    <h1>Partner Database</h1>
+
+    <div class="searchbar">
+    <input type="text" id="searchInput" oninput="searchPartners()" placeholder="Search partners...">
+    <select id="filterSelect" onchange="filterPartners()">
+    <option value="">Filter by organization type</option>
+    <option value="Corporation">Corporation</option>
+    <option value="Non-profit">Non-profit</option>
+    <option value="Microbusiness">Microbusiness</option>
+    <option value="Franchise">Franchise</option>
+    <option value="Partnership">Partnership</option>
+    <!-- Add more organization types as needed -->
+    </select>
+    </div>
+
+    <div class="cards" id="cards">
+    <!-- Partner cards will be displayed here -->
+    </div>
+
+    <!-- Form for adding new partners -->
+    <div id="addPartnerFormContainer">
+
+    </div>
+
+    </div>
+  
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAUAKgUyEJV7WwXOp2zV1cP3Z5-mzz-XRM",
+        authDomain: "fbla-coding-and-program-2024.firebaseapp.com",
+        databaseURL: "https://fbla-coding-and-program-2024-default-rtdb.firebaseio.com",
+        projectId: "fbla-coding-and-program-2024",
+        storageBucket: "fbla-coding-and-program-2024.appspot.com",
+        messagingSenderId: "924883999899",
+        appId: "1:924883999899:web:328241f4ced6140a92ba3e"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {getDatabase, ref, set, child, get, update, remove}
+      from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+
+      const db = getDatabase();
+      var partnerCard = document.querySelector(".cards");
+      var addPartnerForm = document.querySelector("#addPartnerFormContainer");
+      
+    </script>
+  </body>
+</html>

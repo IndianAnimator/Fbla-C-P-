@@ -1,0 +1,162 @@
+/* style.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #004280, #0091ff);
+  color: #fff;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 60px;
+  color: #c5dae2;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+#searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #E6E6E6;
+}
+
+#filterSelect {
+  margin-left: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #E6E6E6;
+  color: #919191;
+}
+
+#filterSelect option {
+  color: #303030;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+  margin-bottom: 40px;
+}
+
+.card {
+  width: 33%;
+  height: 350px;
+  background-color: #FFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.card-content {
+  padding: 20px;
+  color: black;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+.add-partner-form {
+  margin-top: 20px;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+nav {
+  background-color: #004280;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  float: center;
+  width: 45%;
+}
+
+nav ul li a:hover {
+  background-color: #007bff;
+}
