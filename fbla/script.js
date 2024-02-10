@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  var partners = [
+  const partners = [
     { name: "XYZ Corp", type: "Corporation", resources: "Financial support", contactPerson: "John Doe", email: "john.doe@example.com", phone: "470-555-1234" },
     { name: "ABC Foundation", type: "Non-profit", resources: "Volunteer opportunities", contactPerson: "Jane Smith", email: "jane.smith@example.com", phone: "470-555-5678" },
     { name: "Tech Innovators Inc.", type: "Corporation", resources: "Technology solutions", contactPerson: "Mark Johnson", email: "mark.johnson@example.com", phone: "555-9876" },
