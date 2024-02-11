@@ -12,6 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^10.8.0",
-    "node.js": "^0.0.1-security"
+    "node.js": "^0.0.1-security",
+    "pip": "^0.0.1",
+    "pyinstaller": "^0.0.1",
+    "python": "^0.0.4"
   }
 }

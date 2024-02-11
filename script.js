@@ -74,7 +74,7 @@ function createCardElement(partner, index) {
     cardContent.appendChild(label);
   });
 
-  // add delete button (with trash icon)
+  // add delete button
   var deleteButton = document.createElement("button");
   deleteButton.className = "delete-button";
   deleteButton.innerHTML = "Delete";
