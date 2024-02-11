@@ -69,6 +69,7 @@ function addPartnerForm() {
   form.appendChild(submitButton);
   formContainer.appendChild(form);
 }
+
 // Function to fetch partners data from Firebase and display them
 function displayPartners() {
   var cardsContainer = document.getElementById("cards");
