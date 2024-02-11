@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Partner Database</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="module" src="script.js"></script>
   </head>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="partnerPage.html">Partner Database</a></li>
-    </ul>
-  </nav>
-
   <body>
+    <nav>
+      <div>
+        <img src="logo2.png" alt="" />
+      </div>
 
+      <ul>
+        <li>
+          <a href="index.html"> Home </a>
+        </li>
+        <li>
+          <a href="partnerPage.html"> Partners </a>
+        </li>
+        <li>
+          <a href="contact.html"> Contact </a>
+        </li>
+      </ul>
+    </nav>
     <div class="container">
+      <div class="top-header">
+        <h1 class="title">All Partners</h1>
+        <a href="addPartner.html" class="add-link">Add Partner</a>
+      </div>
 
-    <h1>Partner Database</h1>
+      <div class="searchbar">
+        <input
+          type="text"
+          id="searchInput"
+          oninput="searchPartners()"
+          placeholder="Search partners..."
+        />
+        <select id="filterSelect" onchange="filterPartners()">
+          <option value="">Filter by organization type</option>
+          <option value="All">All</option>
+          <option value="Corporation">Corporation</option>
+          <option value="Non-profit">Non-profit</option>
+          <option value="Microbusiness">Microbusiness</option>
+          <option value="Franchise">Franchise</option>
+          <option value="Partnership">Partnership</option>
+        </select>
+      </div>
 
-    <div class="searchbar">
-      <input type="text" id="searchInput" oninput="searchPartners()" placeholder="Search partners...">
-    <select id="filterSelect" onchange="filterPartners()">
-      <option value="">Filter by organization type</option>
-      <option value="Corporation">Corporation</option>
-      <option value="Non-profit">Non-profit</option>
-      <option value="Microbusiness">Microbusiness</option>
-      <option value="Franchise">Franchise</option>
-      <option value="Partnership">Partnership</option>
-      </select>
+      <div class="cards" id="cards">
+        <!-- Partner cards will be displayed here -->
+      </div>
+
+      <!-- Form for adding new partners -->
     </div>
-
-    <div class="cards" id="cards">
-    <!-- Partner cards will be displayed here -->
-    </div>
-
-    <!-- Form for adding new partners -->
-    <div id="addPartnerFormContainer" class ="formContainer">
-    
-    </div>
-
-    </div>
-  
   </body>
 </html>

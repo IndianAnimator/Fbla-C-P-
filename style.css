@@ -1,25 +1,11 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #004280, #0091ff);
-  color: #fff;
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
-
 .container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
   flex-grow: 1;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 60px;
-  color: #c5dae2;
 }
 
 .searchbar {
@@ -32,18 +18,18 @@ h1 {
 #searchInput {
   flex-grow: 1;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #E6E6E6;
+
+  border: 2px solid #007bff;
+  border-radius: 15px;
+  font-size: 15px;
 }
 
 #filterSelect {
   margin-left: 20px;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #E6E6E6;
-  color: #919191;
+  border: 2px solid #282d32;
+  border-radius: 15px;
+  font-size: 15px;
 }
 
 #filterSelect option {
@@ -56,20 +42,25 @@ h1 {
   justify-content: space-around;
   align-content: space-between;
   margin-bottom: 40px;
+  gap: 10px;
 }
 
 .card {
   width: 33%;
   height: 350px;
-  background-color: #FFF;
+  background-color: #fff;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   margin-bottom: 20px;
   cursor: pointer;
   transform: translateX(0);
   transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .card-content {
@@ -127,18 +118,26 @@ h1 {
 nav {
   background-color: #004280;
   padding: 10px 0;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+}
+nav div {
+  width: 70px;
+  height: 70px;
+}
+nav div img {
+  width: 100%;
+  height: 100%;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px;
+  display: flex;
 }
 
 nav ul li:last-child {
@@ -152,8 +151,60 @@ nav ul li a {
   padding: 10px 20px;
   transition: background-color 0.3s;
   width: 45%;
+  font-size: 20px;
 }
 
 nav ul li a:hover {
+  transform: scale(0.9);
+  outline: none;
+  text-decoration: none;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 18px;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.top-header h1 {
+  font-size: 36px;
+}
+.top-header a {
+  padding: 10px 20px;
   background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+.formContainer {
+  border: 1px solid #ccc;
+  padding: 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.formContainer input {
+  margin-bottom: 20px;
 }
