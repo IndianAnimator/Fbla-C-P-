@@ -57,12 +57,12 @@ function addPartnerForm() {
     });
 
     // Add partner data to the database
-    set(ref(db, "Partners/" + partner.Name), partner)
+    set(child(ref(db, "Partners/" + partner.Name), partner.Name), partner)
       .then(() => {
-        form.reset();
+        console.log('Added partner:', partner.Name);
       })
       .catch((error) => {
-        console.error("Error adding partner:", error);
+        console.error('Error adding partner:', error);
       });
   });
 
