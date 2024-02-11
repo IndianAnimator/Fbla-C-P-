@@ -36,9 +36,6 @@ function addPartnerForm() {
     Email: enterEmail.value,
     Phone: enterPhone.value
   })
-  .then(()=>{
-      alert("Data added successfully");
-  })
   .catch((error)=>{
       alert(error);
   });
@@ -81,7 +78,8 @@ function searchPartners() {
 }
 
 // Display the add partner form
-addPartnerForm();
+insertBtn.addEventListener('click', addPartnerForm );
+
 
 // Add event listeners for filter and search
 document.getElementById("filterSelect").addEventListener("change", filterPartners);
