@@ -1,12 +1,10 @@
-/* style.css */
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to bottom, #004280, #0091ff);
   color: #fff;
   margin: 0;
   min-height: 100vh;
-
+  display: flex;
   flex-direction: column;
 }
 
@@ -129,7 +127,7 @@ h1 {
 nav {
   background-color: #004280;
   padding: 10px 0;
-  text-align: center;
+  
 }
 
 nav ul {

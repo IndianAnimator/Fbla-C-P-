@@ -22,8 +22,8 @@
     <h1>Partner Database</h1>
 
     <div class="searchbar">
-      <input type="text" id="searchInput" placeholder="Search partners...">
-      <select id="filterSelect">
+      <input type="text" id="searchInput" oninput="searchPartners()" placeholder="Search partners...">
+    <select id="filterSelect" onchange="filterPartners()">
       <option value="">Filter by organization type</option>
       <option value="Corporation">Corporation</option>
       <option value="Non-profit">Non-profit</option>
@@ -39,33 +39,7 @@
 
     <!-- Form for adding new partners -->
     <div id="addPartnerFormContainer" class ="formContainer">
-      <h2>Add New Partner</h2>
-    <label for="partnerName">Name:</label>
-    <input type="text" id="partnerName" required>
-
-    <label for="partnerType">Type:</label>
-    <select id="partnerType" required>
-      <option value="Corporation">Corporation</option>
-      <option value="Non-profit">Non-profit</option>
-      <option value="Microbusiness">Microbusiness</option>
-      <option value="Franchise">Franchise</option>
-      <option value="Partnership">Partnership</option>
-        <!-- Add more organization types as needed -->
-    </select>
-
-    <label for="partnerResources">Resources:</label>
-    <input type="text" id="partnerResources" required>
-
-    <label for="partnerContactPerson">Contact Person:</label>
-    <input type="text" id="partnerContactPerson" required>
-
-    <label for="partnerEmail">Email:</label>
-    <input type="email" id="partnerEmail" required>
-
-    <label for="partnerPhone">Phone:</label>
-    <input type="tel" id="partnerPhone" required>
-
-    <button type="button" id = "addPartner">Add Partner</button>
+    
     </div>
 
     </div>

@@ -16,71 +16,152 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 var db = getDatabase();
 
-var enterName = document.querySelector("#partnerName");
-var enterType = document.querySelector("#partnerType");
-var enterResources = document.querySelector("#partnerResources");
-var enterContactPerson = document.querySelector("#partnerContactPerson");
-var enterEmail = document.querySelector("#partnerEmail");
-var enterPhone = document.querySelector("#partnerPhone");
-
-var insertBtn = document.querySelector("#addPartner");
-
-
-// Function to display the add partner form
+// Function to create and display the add partner form
 function addPartnerForm() {
-  set(ref(db, "Partners/" +  enterName.value),{
-    Name: enterName.value,
-    Type: enterType.value,
-    Resources: enterResources.value,
-    ContactPerson: enterContactPerson.value,
-    Email: enterEmail.value,
-    Phone: enterPhone.value
-  })
-  .catch((error)=>{
-      alert(error);
+  var formContainer = document.getElementById("addPartnerFormContainer");
+  formContainer.innerHTML = "";
+
+  var form = document.createElement("form");
+  form.className = "add-partner-form"; 
+  
+  var fields = ["Name", "Type", "Resources", "ContactPerson", "Email", "Phone"];
+
+  fields.forEach(function (field) {
+    var label = document.createElement("label");
+    label.textContent = field + ":";
+    label.className = "form-label"; 
+
+    var input = document.createElement("input");
+    input.setAttribute("type", field.toLowerCase() === "email" ? "email" : "text");
+    input.setAttribute("name", field.toLowerCase());
+    input.setAttribute("required", "required");
+    input.className = "form-input";
+
+    var fieldContainer = document.createElement("div");
+    fieldContainer.className = "input-container";
+    form.appendChild(label);
+    form.appendChild(input);
+
+    form.appendChild(fieldContainer);
+  });
+
+  var submitButton = document.createElement("button");
+  submitButton.textContent = "Add Partner";
+  submitButton.className = "submit-button";
+
+  submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    var partner = {};
+    fields.forEach(function (field) {
+      partner[field] = form.elements[field.toLowerCase()].value;
+    });
+
+    // Add partner data to the database
+    set(ref(db, "Partners/" + partner.Name), partner)
+      .then(() => {
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error adding partner:", error);
+      });
+  });
+
+  form.appendChild(submitButton);
+  formContainer.appendChild(form);
+}
+// Function to fetch partners data from Firebase and display them
+function displayPartners() {
+  var cardsContainer = document.getElementById("cards");
+  cardsContainer.innerHTML = "";
+
+  const partnersRef = ref(db, "Partners");
+  get(partnersRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const partners = Object.values(snapshot.val());
+      partners.forEach(function (partner, index) {
+        var card = createCardElement(partner, index);
+        cardsContainer.appendChild(card);
+      });
+    }
+  }).catch((error) => {
+    console.error("Error fetching partners:", error);
   });
 }
 
-// Function to display partners
-function displayPartners(partners) {
-  // your display function
-  const dbref = ref(db);
+// Function to create card element for a partner
+function createCardElement(partner, index) {
+  var card = document.createElement("div");
+  card.className = "card";
+  card.id = "card-" + index;
 
-  get(child(dbref, "partners/"))
+  var cardContent = document.createElement("div");
+  cardContent.className = "card-content";
 
+  // Add partner details to card content
+  var details = ["Name", "Type", "Resources", "ContactPerson", "Email", "Phone"];
+  details.forEach(function (detail) {
+    var label = document.createElement("p");
+    label.className = "card-text";
+    label.innerHTML = "<strong>" + detail + ": </strong>" + partner[detail];
+    cardContent.appendChild(label);
+  });
+
+  card.appendChild(cardContent);
+  return card;
 }
 
-// Function to filter partners by type
-function filterPartners() {
-  // your filter function
+
+// Function to filter partners by type and display the filtered partners
+function filterPartnersByType(type) {
+  const partnersRef = ref(db, "Partners");
+  get(partnersRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const partners = Object.values(snapshot.val());
+      const filteredPartners = partners.filter((partner) => {
+        return partner.Type.toLowerCase() === type.toLowerCase();
+      });
+      var cardsContainer = document.getElementById("cards");
+      cardsContainer.innerHTML = "";
+      filteredPartners.forEach((partner, index) => {
+        var card = createCardElement(partner, index);
+        cardsContainer.appendChild(card);
+      });
+    }
+  }).catch((error) => {
+    console.error("Error filtering partners by type:", error);
+  });
 }
 
-// Function to search partners by name
-function searchPartners() {
-  const dbref = ref(db);
-
-  get(child(dbref, "Partners/" + findName.value))
-  .then((snapshot)=>{
-      if(snapshot.exists()){
-          findName.innerHTML = "Name: " + snapshot.val().Name;
-          findType.innerHTML = "Age: " + snapshot.val().Type;
-          findEmail.innerHTML = "Email: " + snapshot.val().Email;
-          findPhone.innerHTML = "Phone: " + snapshot.val().Phone;
-          findContactPerson.innerHTML = "Contact Person: " + snapshot.val().ContactPerson;
-          findResources.innerHTML = "Resources: " + snapshot.val().Resources;
-      } else {
-          alert("No data found");
-      }
-  })
-  .catch((error)=>{
-      alert(error)
-  })
+// Function to search partners by name and display the filtered partners
+function searchPartners(searchQuery) {
+  const partnersRef = ref(db, "Partners");
+  get(partnersRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const partners = Object.values(snapshot.val());
+      const filteredPartners = partners.filter((partner) => {
+        return partner.Name.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+      var cardsContainer = document.getElementById("cards");
+      cardsContainer.innerHTML = "";
+      filteredPartners.forEach((partner, index) => {
+        var card = createCardElement(partner, index);
+        cardsContainer.appendChild(card);
+      });
+    }
+  }).catch((error) => {
+    console.error("Error searching partners:", error);
+  });
 }
 
-// Display the add partner form
-insertBtn.addEventListener('click', addPartnerForm );
+document.addEventListener("DOMContentLoaded", function () {
+  displayPartners();
+  addPartnerForm();
 
-
-// Add event listeners for filter and search
-document.getElementById("filterSelect").addEventListener("change", filterPartners);
-document.getElementById("searchInput").addEventListener("input", searchPartners);
+  // Add event listeners for filter and search
+  document.getElementById("searchInput").addEventListener("input", function () {
+    searchPartners(this.value);
+  });
+  document.getElementById("filterSelect").addEventListener("input", function () {
+    filterPartnersByType(this.value);
+  });
+});
